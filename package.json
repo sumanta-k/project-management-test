@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'there is no test is written out here for now'",
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [
     "node.js",
