@@ -6,7 +6,7 @@
   "quoteProps": "consistent",
   "trailingCommas": "none",
   "bracketSpacing": true,
-  "objectWrap": "preserve",
+  "objectWrap": "collapse",
   "arrowFunctionParentheses": "always",
   "endOfLine": "crlf",
   "singleAttributePerLine": true
