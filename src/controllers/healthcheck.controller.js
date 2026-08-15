@@ -1,4 +1,5 @@
 import { ApiResponse } from "../utils/api-response.js";
+import { asyncHandler } from "../utils/async-handler.js";
 
 /* simple way of try catch
 const healthCheck = async (req, res, next) => {
