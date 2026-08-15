@@ -1,13 +1,17 @@
 import { ApiResponse } from "../utils/api-response.js";
 
-const healthCheck = (req, res) => {
+/* simple way of try catch
+const healthCheck = async (req, res, next) => {
   try {
+    await getUserFromDB();
     res
       .status(200)
       .json(new ApiResponse(200, { message: "Server is running" }));
   } catch (err) {
-    console.error(err);
+    next(err); // express's builtin error handler
   }
 };
+
+*/
 
 export { healthCheck };
