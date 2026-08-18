@@ -40,4 +40,11 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+// attaching methods to schema
+
+// it takes 1 argument --> user input password
+userSchema.methods.isPasswordCorrect = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
 export const User = mongoose.model("User", userSchema);
