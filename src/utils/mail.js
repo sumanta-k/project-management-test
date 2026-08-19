@@ -7,6 +7,7 @@ const sendEmail = async (options) => {
     product: { name: "taskForce", link: "https://taskForceLink.com" },
   });
 
+  // generate email content's from in plain text and html
   const emailTextual = mailGenerator.generatePlainText(options.mailgenContent);
   const emailHtml = mailGenerator.generate(options.mailgenContent);
 
