@@ -1,4 +1,41 @@
 import Mailgen from "mailgen";
+import nodemailer from "nodemailer";
+
+const sendEmail = async (options) => {
+  const mailGenerator = new Mailgen({
+    theme: "default",
+    product: { name: "taskForce", link: "https://taskForceLink.com" },
+  });
+
+  const emailTextual = mailGenerator.generatePlainText(options.mailgenContent);
+  const emailHtml = mailGenerator.generate(options.mailgenContent);
+
+  // create a tranporter by using nodemailer
+  const transporter = nodemailer.createTransport({
+    host: process.env.MAILTRAP_SMTP_HOST,
+    port: process.envMAILTRAP_SMTP_PORT,
+    auth: { user: MAILTRAP_SMTP_USERNAME, pass: MAILTRAP_SMTP_PASSWORD },
+  });
+
+  // Now send email
+  const email = {
+    from: "mail.taskForce@example.com",
+    to: options.email,
+    subject: options.subject,
+    text: emailTextual,
+    html: emailHtml,
+  };
+
+  try {
+    await transporter.sendMail(mail);
+  } catch (err) {
+    console.error(
+      "email service failed silently. This might have happened for the configuration, make sure you have right mailtrap credentials in the .env file",
+      err
+    );
+  }
+};
+
 const emailVerificationMailgenContent = function (
   username,
   emailVerificationURL
@@ -39,4 +76,8 @@ const forgotPasswordMailgenContent = (username, passwordResetURL) => {
   };
 };
 
-export { emailVerificationMailgenContent, forgotPasswordMailgenContent };
+export {
+  emailVerificationMailgenContent,
+  forgotPasswordMailgenContent,
+  sendEmail,
+};
