@@ -31,7 +31,7 @@ const userSchema = new Schema(
     forgotPasswordToken: { type: String },
     forgotPasswordExpiry: { type: Date },
     emailVerificationToken: { type: String },
-    emailVerificationExpirey: { type: Date },
+    emailVerificationExpiry: { type: Date },
   },
   { timestamps: true }
 );
