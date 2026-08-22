@@ -8,7 +8,7 @@ const sendEmail = async (options) => {
   });
 
   // generate email content's from in plain text and html
-  const emailTextual = mailGenerator.generatePlainText(options.mailgenContent);
+  const emailTextual = mailGenerator.generatePlaintext(options.mailgenContent);
   const emailHtml = mailGenerator.generate(options.mailgenContent);
 
   // create a tranporter by using nodemailer
