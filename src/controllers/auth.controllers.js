@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import { User } from "../models/user.models.js";
 import { ApiResponse } from "../utils/api-response.js";
 import { ApiError } from "../utils/api-error.js";
@@ -135,5 +136,34 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, req.user, "current user fetched successfully"));
 });
+const verifyEmail = asyncHandler(async (req, res) => {
+  // first get the data from the url
+  const { verificationToken } = req.params;
 
-export { registerUser, login, logoutUser, getCurrentUser };
+  // now hash the token and find the user which has same hashed token in the db
+  let hashedToken = crypto
+    .createHash("sha256")
+    .update(verificationToken)
+    .digest("hex");
+
+  const user = await User.findOne({
+    emailVerificationToken: hashedToken,
+    emailVerificationExpiry: { $gt: Date.now() },
+  });
+
+  if (!user) {
+    throw new ApiError(400, "Invalid verification token or it is expired");
+  }
+
+  user.emailVerificationToken = undefined;
+  user.emailVerificationExpiry = undefined;
+
+  user.isEmailVerified = true;
+  await user.save({ validateBeforeSave: false });
+
+  return res
+    .status(200)
+    .json(new ApiRespons(200, { isEmailVerified: true }, "Email is verified"));
+});
+
+export { registerUser, login, logoutUser, getCurrentUser, verifyEmail };
