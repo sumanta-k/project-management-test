@@ -37,6 +37,16 @@ const userChangeCurrentPasswordValidator = () => {
   ];
 };
 
+const userForgotPasswordValidator = () => {
+  return [
+    body("email")
+      .notEmpty()
+      .withMessage("email is required")
+      .isEmail()
+      .withMessage("email is invalid"),
+  ];
+};
+
 export {
   userRegisterValidator,
   userLoginValidator,
