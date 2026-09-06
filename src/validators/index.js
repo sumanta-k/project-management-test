@@ -37,3 +37,8 @@ const userChangeCurrentPasswordValidator = () => {
   ];
 };
 
+export {
+  userRegisterValidator,
+  userLoginValidator,
+  userChangeCurrentPasswordValidator,
+};
