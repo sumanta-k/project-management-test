@@ -24,6 +24,7 @@ const router = Router();
 router.route("/register").post(userRegisterValidator(), validate, registerUser);
 router.route("/login").post(userLoginValidator(), validate, login);
 router.route("/verify-email/:verificationToken").get(verifyEmail);
+router.route("refresh-token").post(refreshAccessToken);
 
 // NOTE: secure routes
 router.route("/logout").post(verifyJWT, logoutUser);
