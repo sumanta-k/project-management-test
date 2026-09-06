@@ -31,6 +31,9 @@ router.route("refresh-token").post(refreshAccessToken);
 router
   .route("forgot-password")
   .post(userForgotPasswordValidator(), validate, forgotPasswordRequest);
+router
+  .route("reset-password/:resetToken")
+  .post(userResetForgotPasswordValidator(), validate, resetForgotPassword);
 
 // NOTE: secure routes
 router.route("/logout").post(verifyJWT, logoutUser);
