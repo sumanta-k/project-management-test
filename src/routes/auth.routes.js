@@ -13,6 +13,7 @@ import { Router } from "express";
 
 const router = Router();
 
+// TLDR: unsecure route
 router.route("/register").post(userRegisterValidator(), validate, registerUser);
 router.route("/login").post(userLoginValidator(), validate, login);
 
