@@ -15,6 +15,9 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 import {
   userRegisterValidator,
   userLoginValidator,
+  userChangeCurrentPasswordValidator,
+  userForgotPasswordValidator,
+  userResetForgotPasswordValidator,
 } from "../validators/index.js";
 import { Router } from "express";
 
