@@ -38,5 +38,13 @@ router
 // NOTE: secure routes
 router.route("/logout").post(verifyJWT, logoutUser);
 router.route("/current-user").get(verifyJWT, getCurrentUser);
+router
+  .route("/change-password")
+  .post(
+    verifyJWT,
+    userChangeCurrentPasswordValidator(),
+    validate,
+    changeCurrentPassword
+  );
 
 export default router;
