@@ -47,4 +47,8 @@ router
     changeCurrentPassword
   );
 
+router
+  .route("/resend-email-verification")
+  .post(verifyJWT, resendEmailVerification);
+
 export default router;
